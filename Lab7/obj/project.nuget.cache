@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "RZlGY/OLK17FCOY+P9T4rYByVVOaTGLZvrkswwc/TyFd17A3y0CoGPiFtBdBygcnbjfCuAxn9z8xcBoFEjLi6w==",
+  "dgSpecHash": "GKI4CXVRTrln4Hyc6TeFghgMIkply7gS1azBSyOK+8buU5J7h2YbzgrSz0n6oQCsXIugXrKVMsrT9gmCK0ugUQ==",
   "success": true,
   "projectFilePath": "D:\\Yagnik\\CPIN\\Semester_3\\IOT 1030 OOP II\\Labs\\Github_Lab7\\Lab7\\Lab7.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\viran\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
