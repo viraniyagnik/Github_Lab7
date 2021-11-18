@@ -7,7 +7,7 @@ namespace Psim
 	{
 		static void Main(string[] args)
 		{
-#if true
+#if false
 			DispersionData dData;
 			dData.LaData = new double[] { -2.22e-7, 9260.0, 0.0};
 			dData.TaData = new double[] { -2.28e-7, 5240.0, 0.0};

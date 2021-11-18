@@ -44,6 +44,10 @@ namespace Psim
 
 		public void RunSimulation()
 		{
+			SetSurfaces(tEq);
+			double totalEnergy = GetTotalEnergy();
+			double effEnergy = totalEnergy / NUM_PHONONS;
+			SetEmitPhonons(tEq, effEnergy, TIME_STEP);
 			Console.WriteLine("Run Simulation has not been implemented!");
 		}
 

@@ -30,35 +30,73 @@ namespace Psim.IOManagers
                 return modelData;
             }
         }
-
+        //To add cells
         private static void AddCells(Model m, JToken cellData)
 		{
-            throw new System.NotImplementedException();
-		}
 
+            IList<JToken> cellTokens = cellData.Children().ToList();
+            foreach (var token in cellTokens)
+            {
+                m.AddCell((double)token["length"], (double)token["width"], (int)token["sensorID"]);
+                System.Console.WriteLine($"Successfully added a {(double)token["length"]} * {(double)token["width"]}cell to the model.The cell is Linked to the sensor {(int)token["sensorID"]}.");
+            }
+           
+
+
+        }
+
+        //To add sensors
         private static void AddSensors(Model m, JToken sensorData)
-		{
-            throw new System.NotImplementedException();
-		}
+        {
+            IList<JToken> sensorTokens = sensorData.Children().ToList();
+            foreach (var token in sensorTokens)
+            {
+                m.AddSensor((int)token["id"], (double)token["t_init"]);
+                System.Console.WriteLine($"Successfully added sensor {token["id"]} to the model.The sensor's initial temprature is {token["t_init"]}.");
+            }
+          
+        }
 
-        private static Model GetModel(Material material, JToken settingsData)
+        // To get Model data
+            private static Model GetModel(Material material, JToken settingsData)
 		{
-            throw new System.NotImplementedException();
-		}
+            var High_temp = (double)settingsData["high_temp"];
+            var Low_temp = (double)settingsData["low_temp"];
+            var Sim_time = (double)settingsData["sim_time"];
 
+            System.Console.WriteLine($"Successfully created a model {High_temp} {Low_temp} {Sim_time}");
+            return new Model(material, High_temp, Low_temp, Sim_time);
+        }
+
+        //To get material data
         private static Material GetMaterial(JToken materialData)
 		{
-            throw new System.NotImplementedException();
-		}
+            var dData = GetDispersionData(materialData["d_data"]);
+            var rData = GetRelaxationData(materialData["r_data"]);
+            return new Material(dData, rData);
+        }
 
+        //To get DispersionData
         private static DispersionData GetDispersionData(JToken dData)
 		{
-            throw new System.NotImplementedException();
-		}
+            var wMaxLa = (double)dData["max_freq_la"];
+            var wMaxTa = (double)dData["max_freq_ta"];
+            var laData = dData["la_data"].ToObject<double[]>();
+            var taData = dData["ta_data"].ToObject<double[]>();
+            return new DispersionData(laData, wMaxLa, taData, wMaxTa);
+        }
 
+        //To get RelaxationData
         private static RelaxationData GetRelaxationData(JToken rData)
 		{
-            throw new System.NotImplementedException();
-		}
+            var Bl = (double)rData["b_l"];
+            var Btn = (double)rData["b_tn"];
+            var Btu = (double)rData["b_tu"];
+            var BI = (double)rData["b_i"];
+            var w = (double)rData["w"];
+            return new RelaxationData(Bl, Btn, Btu, BI, w);
+           
+
+        }
     }
 }
